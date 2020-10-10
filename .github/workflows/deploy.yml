@@ -14,19 +14,3 @@ jobs:
           with:
             django-app: 'sample_app'
             minimum-coverage: '86'
-      #- name: Initi project
-      #  uses: actions/checkout@v2
-      #- name: PHP Linter
-      #  uses: michaelw90/PHP-Lint@master
-      #- name: Sercurity checker
-      #  uses: symfonycorp/security-checker-action@v2
-      #- name: PHPStan
-      #  uses: docker://oskarstark/phpstan-ga
-      #  with:
-      #    args: analyse src/ --level=5
-      #- name: Deploy to Heroku
-      #  uses: akhileshns/heroku-deploy@v3.5.6 # This is the action
-      #  with:
-      #    heroku_api_key: ${{secrets.HEROKU_KEY}}
-      #    heroku_app_name: ${{secrets.HEROKU_APP}}
-      #    heroku_email: ${{secrets.HEROKU_EMAIL}}
