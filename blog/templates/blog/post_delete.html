@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles i18n %}
+
+
+{% block content %}
+
+    <h1>Supprimer Post</h1>
+    <br>
+    <h3>Supprimer : {{ post.title }}</h3>
+<br>
+<div>
+    <form method="POST">
+        {% csrf_token %}
+        <strong>Etes vous sûre ?</strong> 
+        <br><br>
+        <button class="save btn btn default">Oui</button>
+        <a href="{% url 'accueil' %}"> Annuler </a>
+    </form>
+</div>
+
+            
+
+{% endblock %}

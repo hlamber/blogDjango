@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    
+    {% for post in posts %}
+        <div>
+            <p>published: {{ post.published_date }} by {{ post.author }} </p>
+            <h2><a href="{% url 'post_detail' id=post.pk %}">{{ post.title }}</a></h2>
+            <p>{{ post.text }}</p>
+            
+            {% if user.is_authenticated %}
+                {% if user.id == post.author.id or user.username == "admin" %}
+
+                    <a href="{% url 'post_add' post.id %}"> <input type="submit" class="save btn btn-default" value="modifier" ></a>
+                    <a href="{% url 'post_delete' post.id %}"> <input type="submit" class="save btn btn-default" value="supprimer" ></a>
+                {% endif %}
+            {% endif %}
+            
+            <hr>
+        </div>
+    {% endfor %}
+
+{% endblock %}

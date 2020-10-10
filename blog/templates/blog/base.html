@@ -1,0 +1,29 @@
+<div>
+    <h1><a href="{% url 'accueil' %}">Blog Geeps</a></h1>
+</div>
+
+{% if user.is_authenticated %}
+
+    <li class="nav-item">
+        <a class="nav-link" href = "{% url 'post_add' %}"> Ajouter Post </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href = "{% url 'logout' %}"> déconnexion </a>
+    </li>
+
+    <br>
+
+    Utilisateur connecté : {{ user.username }}
+
+{% else %}
+
+    <li class="nav-item">
+        <a class="nav-link" href = "{% url 'login' %}"> Connexion </a>
+    </li>
+
+{% endif %}
+
+<hr>
+{% block content %}
+{% endblock %}
