@@ -11,6 +11,6 @@ jobs:
         uses: actions/checkout@v2
       - name: Django Coverage action
         uses: actions/python-django-coverage-gitHub-action@0.9
-          with:
-            django-app: 'sample_app'
-            minimum-coverage: '86'
+        with:
+          django-app: 'sample_app'
+          minimum-coverage: '86'
