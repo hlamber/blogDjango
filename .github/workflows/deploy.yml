@@ -12,8 +12,8 @@ jobs:
       - name: Django Coverage action
         uses: actions/python-django-coverage-gitHub-action@0.9
           with:
-          django-app: 'sample_app'
-          minimum-coverage: '86'
+            django-app: 'sample_app'
+            minimum-coverage: '86'
       #- name: Initi project
       #  uses: actions/checkout@v2
       #- name: PHP Linter
