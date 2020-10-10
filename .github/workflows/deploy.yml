@@ -12,13 +12,13 @@ jobs:
         with:
           # Make sure the actual branch is checked out when running on pull requests
           ref: ${{ github.head_ref }}
-      - name: Generate Data Schema
-        uses: noah-software/django_action@v1.0
-        with:
+      #- name: Generate Data Schema
+      #  uses: noah-software/django_action@v1.0
+      #  with:
           # This part is also where you can pass other options, for example:
-          pip_path: testfolder/app/requirements.txt
-          project_path: app/
-          output_path: docs/model.png
+      #    pip_path: testfolder/app/requirements.txt
+      #    project_path: app/
+      #    output_path: docs/model.png
       #- name: Django Coverage action
       #  uses: actions/python-django-coverage-gitHub-action@0.9
       - name: Deploy to Heroku
