@@ -2,7 +2,7 @@ name: Deploy website to Heroku
 on:
   push:
     branches:
-      - master
+      - preprod
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -30,6 +30,6 @@ jobs:
           django-app: 'sample_app'
           minimum-coverage: '86'
           heroku_api_key: ${{secrets.HEROKU_KEY}}
-          heroku_app_name: ${{secrets.HEROKU_APP}}
+          heroku_app_name: ${{secrets.HEROKU_APP_PREPROD}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           
