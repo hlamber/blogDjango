@@ -26,8 +26,8 @@ SECRET_KEY = '%7xy%3h-$28)9sx2-(a@s=oz5%&0ix@x(_n0z$l=oacjw3o*sj'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'blogdjangoo.herokuapp.com',
     'blogdjango2.herokuapp.com',
+    'blogdjangoo.herokuapp.com',
 ]
 
 
