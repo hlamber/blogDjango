@@ -1,3 +1,3 @@
-web: python myApp.py runserver 0.0.0.0:$PORT
+web: python blogDjango.py runserver 0.0.0.0:$PORT
 
 
