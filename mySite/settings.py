@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'blogdjango2.herokuapp.com',
     'blogdjangoo.herokuapp.com',
+    "*"
 ]
 
 
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'about',
 ]
 
 MIDDLEWARE = [
