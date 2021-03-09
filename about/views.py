@@ -6,13 +6,13 @@ from .models import Contact
 from .forms import ContactForm
 
 # Create your views here.
-def home(request):
-    return HttpResponse(
-        """
-        <h1>Hello World</h1>
-        <p>Ceci est ma première page avec Django</p>
-        """
-    )
+# def home(request):
+#     return HttpResponse(
+#         """
+#         <h1>Hello World</h1>
+#         <p>Ceci est ma première page avec Django</p>
+#         """
+#     )
 
 class AboutPageView(TemplateView):
     template_name = "about-us.html"
