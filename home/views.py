@@ -9,4 +9,4 @@ from django.shortcuts import render
 #     """)
 
 def home(request):
-    return render(request, 'formation/accueil.html', {})
+    return render(request, 'home/index.html', {})
