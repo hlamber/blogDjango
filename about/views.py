@@ -14,5 +14,8 @@ def home(request):
 class AboutPageView(TemplateView):
     template_name = "about-us.html"
 
+class ContactPageView(TemplateView):
+    template_name = "contact.html"
+
 # def model(request):
 #     return render(request, 'home/index.html')
