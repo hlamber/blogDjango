@@ -3,38 +3,46 @@
 
 
 {% block content %}
-    <div >
-        {% if post.published_date %}
-            <div>
-                {{ post.published_date }} by {{ post.author.username }}
+
+    <!--Content-->
+    <div class="content" id="ajax-content">
+
+        <div class="text-intro">
+            
+            <div >
+                {% if post.published_date %}
+                    <div>
+                        {{ post.published_date }} by {{ post.author.username }}
+                    </div>
+                {% endif %}
+                <h2>{{ post.title }} </h2> 
+                <p>{{ post.text|linebreaksbr }}</p>
             </div>
-        {% endif %}
-        <h2>{{ post.title }} </h2> 
-        <p>{{ post.text|linebreaksbr }}</p>
+
+            <hr>
+
+            <h1> Commentaire : </h1>
+
+            {% for co in comments %}
+                <p>{{ co.text }}, {{ co.published_date }} by {{ co.author }}</p>
+                <hr>
+            {% endfor %}
+            
+            {% if user.is_authenticated %}
+
+                <form method="POST">
+
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="save btn btn-default">Ajouter commentaire</button>
+            
+                </form>
+            {% else %}
+
+                <p> Veuillez vous <a href = "{% url 'login' %}"> connecter</a> pour ajouter un commentaire </p>
+                
+
+            {% endif %}
+        </div>
     </div>
-
-    <hr>
-
-    <h1> Commentaire : </h1>
-
-    {% for co in comments %}
-        <p>{{ co.text }}, {{ co.published_date }} by {{ co.author }}</p>
-        <hr>
-    {% endfor %}
-       
-    {% if user.is_authenticated %}
-
-        <form method="POST">
-
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="save btn btn-default">Ajouter commentaire</button>
-    
-        </form>
-    {% else %}
-
-        <p> Veuillez vous <a href = "{% url 'login' %}"> connecter</a> pour ajouter un commentaire </p>
-        
-
-    {% endif %}
 {% endblock %}

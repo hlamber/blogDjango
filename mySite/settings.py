@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'blogdjango2.herokuapp.com',
     'blogdjangoo.herokuapp.com',
-    "*"
+    '*',
 ]
 
 
