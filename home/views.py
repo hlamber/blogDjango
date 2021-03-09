@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.views.generic import TemplateView
 
 # Create your views here.
 # def home(request):
@@ -8,5 +9,5 @@ from django.shortcuts import render
 #     <p>Ceci est ma première page avec django !</p>
 #     """)
 
-def home(request):
-    return render(request, 'formation/accueil.html', {})
+class HomePageView(TemplateView):
+    template_name = "home/index.html"
