@@ -9,5 +9,8 @@ from django.views.generic import TemplateView
 #     <p>Ceci est ma première page avec django !</p>
 #     """)
 
-class HomePageView(TemplateView):
-    template_name = "home/index.html"
+# class HomePageView(TemplateView):
+#     template_name = "home/index.html"
+
+def home(request):
+    return render(request, 'home/index.html', {})

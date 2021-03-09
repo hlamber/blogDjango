@@ -1,8 +1,8 @@
-from django.conf.urls import url
-from home import views
-from django.conf.urls import url, include
+from django.urls import path, re_path
+from django.conf import settings
 
-urlpatterns = [
-    url('', views.HomePageView.as_view(), name='home'),
+from . import views
+
+urlpatterns = [ 
+    path('', views.home, name='home'),
 ]
-
