@@ -4,7 +4,7 @@ from django.conf import settings
 from . import views
 
 urlpatterns = [
-    
+
     path('post/', views.accueil, name='accueil'),
     path('post_detail/<int:id>/', views.post_detail, name='post_detail'),
     path('post_delete/<int:id>/', views.post_delete, name='post_delete'),
