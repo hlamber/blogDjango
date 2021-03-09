@@ -1,29 +1,155 @@
-<div>
-    <h1><a href="{% url 'accueil' %}">Blog IIM-IWM-testMaster</a></h1>
+{% load static %}
+
+<!doctype html>
+
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <title>About us - THOMSOON - Portfolio with grid and modern simplicity style - download now!</title>
+  <meta name="description" content="About us is minimalist and simplicty information in two column and masonry portfolio logo our photography. Check and download free.">
+  <meta name="keywords" content="thomsoon, simplicity, theme, html5, about us">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="author" content="thomsoon.com">
+  <link rel="icon" type="image/png" href="img/icon.png" />
+
+<!--Style-->
+
+<link rel="stylesheet" href="{% static 'blog/css/reset.css' %}">
+<link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'blog/css/style-responsive.css' %}">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  
+</head>
+
+<body>
+
+<!--Preloader-->
+
+<div class="preloader" id="preloader">
+    <div class="item">
+      <div class="spinner">
+      </div>
+    </div>
 </div>
 
-{% if user.is_authenticated %}
+<div class="opacity-nav">
 
-    <li class="nav-item">
-        <a class="nav-link" href = "{% url 'post_add' %}"> Ajouter Post </a>
-    </li>
+        <div class="menu-index" id="buttons" style="z-index:999999">
+        <i class="fa  fa-close"></i>
+        </div>
 
-    <li class="nav-item">
-        <a class="nav-link" href = "{% url 'logout' %}"> déconnexion </a>
-    </li>
+    <ul class="menu-fullscreen">
+      {% if user.is_authenticated %}
+        <li><a href="{% url 'accueil' %}">Blog IIM-IWM</a></li>
+        <li><a class="nav-link" href = "{% url 'post_add' %}"> Ajouter Post </a></li>
+        <li><a class="nav-link" href = "{% url 'logout' %}"> Déconnexion </a></li>
 
-    <br>
+        Utilisateur connecté : {{ user.username }}
 
-    Utilisateur connecté : {{ user.username }}
+      {% else %}
+        <li><a class="nav-link" href = "{% url 'login' %}"> Connexion </a></li>
+      {% endif %}
+      <li><a class="ajax-link" href="index.html">Home</a></li>
+      <li><a class="ajax-link" href="projects.html">Projects</a></li>
+      <li><a class="ajax-link" href="about-us.html">About us</a></li>
+      <li><a class="ajax-link" href="contact.html">Contact</a></li>
+    </ul>
 
-{% else %}
+</div>
 
-    <li class="nav-item">
-        <a class="nav-link" href = "{% url 'login' %}"> Connexion </a>
-    </li>
 
-{% endif %}
+  <!--Header-->
+  <header id="fullscreen">
+    
+      <div class="logo" id="full"><a class="ajax-link" href="index.html">THOMSOON</a></div>
+      
+        <div class="menu-index" id="button">
+        <i class="fa fa-bars"></i>
+        </div>
 
-<hr>
-{% block content %}
-{% endblock %}
+  </header>
+
+  <div class="clear"></div>
+
+  <!--Menu blog-->
+    <!--<div>
+        <h1><a href="{% url 'accueil' %}">Blog IIM-IWM-testMaster</a></h1>
+    </div>
+
+    {% if user.is_authenticated %}
+
+        <li class="nav-item">
+            <a class="nav-link" href = "{% url 'post_add' %}"> Ajouter Post </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href = "{% url 'logout' %}"> déconnexion </a>
+        </li>
+
+        <br>
+
+        Utilisateur connecté : {{ user.username }}
+
+    {% else %}
+
+        <li class="nav-item">
+            <a class="nav-link" href = "{% url 'login' %}"> Connexion </a>
+        </li>
+
+    {% endif %}
+
+    <hr>-->
+    {% block content %}
+    {% endblock %}
+
+  <!--Home Sidebar-->
+
+<div id="ajax-sidebar"></div>
+
+
+<!--Footer-->
+
+<footer id="ajax-footer">
+
+  <div class="footer-margin">
+    <div class="social-footer">
+      <a href="https://www.facebook.com/thomsooncom"><i class="fa fa-facebook"></i></a>
+      <a href="https://www.behance.net/TomaszMazurczak"><i class="fa fa-behance"></i></a>
+    
+    </div>     
+    <div class="copyright">© Copyright 2015 Thomsoon.com. All Rights Reserved.</div>
+  
+  </div>
+
+
+</footer>
+
+
+<!--Scripts-->
+
+<script src="{% static 'blog/js/jquery.min.js' %}"></script>
+<script src="{% static 'blog/js/jquery.easing.min.js' %}"></script>
+<script src="{% static 'blog/js/modernizr.custom.42534.js' %}" type="text/javascript"></script>
+<script src="{% static 'blog/js/jquery.waitforimages.js' %}" type="text/javascript"></script>
+<script src="{% static 'blog/js/typed.js' %}" type="text/javascript"></script>
+<script src="{% static 'blog/js/masonry.pkgd.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'blog/js/imagesloaded.pkgd.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'blog/js/jquery.jkit.1.2.16.min.js' %}"></script>
+ 
+    <script src="{% static 'blog/js/script.js' %}" type="text/javascript"></script>
+
+<script>
+    $('#button, #buttons').on('click', function() {
+        $( ".opacity-nav" ).fadeToggle( "slow", "linear" );
+    // Animation complete.
+    });
+</script>
+
+
+</body>
+</html>
