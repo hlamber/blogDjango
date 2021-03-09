@@ -45,8 +45,18 @@
     <ul class="menu-fullscreen">
       <li><a class="ajax-link" href="{% url 'home' %}">Home</a></li>
       <li><a class="ajax-link" href="projects.html">Projects</a></li>
-      <li><a class="ajax-link" href="about-us.html">About us</a></li>
-      <li><a class="ajax-link" href="contact.html">Contact</a></li>
+      <li><a class="ajax-link" href="{% url 'about' %}">About us</a></li>
+      <li><a class="ajax-link" href="{% url 'contact' %}">Contact</a></li>
+      {% if user.is_authenticated %}
+        <li><a href="{% url 'accueil' %}">Blog IIM-IWM</a></li>
+        <li><a class="nav-link" href = "{% url 'post_add' %}"> Ajouter Post </a></li>
+        <li><a class="nav-link" href = "{% url 'logout' %}"> Déconnexion </a></li>
+
+        Utilisateur connecté : {{ user.username }}
+
+      {% else %}
+        <li><a class="nav-link" href = "{% url 'login' %}"> Connexion </a></li>
+      {% endif %}
     </ul>
 
 </div>
