@@ -44,6 +44,9 @@
         </div>
 
     <ul class="menu-fullscreen">
+      <li><a class="ajax-link" href="index.html">Home</a></li>
+      <li><a class="ajax-link" href="{% url 'about' %}">About us</a></li>
+      <li><a class="ajax-link" href="contact.html">Contact</a></li>
       <li><a href="{% url 'accueil' %}">Nos Posts</a></li>
       {% if user.is_authenticated %}
         <li><a class="nav-link" href = "{% url 'post_add' %}"> Ajouter Post </a></li>
@@ -54,10 +57,6 @@
       {% else %}
         <li><a class="nav-link" href = "{% url 'login' %}"> Connexion </a></li>
       {% endif %}
-      <li><a class="ajax-link" href="index.html">Home</a></li>
-      <li><a class="ajax-link" href="projects.html">Projects</a></li>
-      <li><a class="ajax-link" href="{% url 'about' %}">About us</a></li>
-      <li><a class="ajax-link" href="contact.html">Contact</a></li>
     </ul>
 
 </div>
@@ -66,7 +65,7 @@
   <!--Header-->
   <header id="fullscreen">
     
-      <div class="logo" id="full"><a class="ajax-link" href="index.html">THOMSOON</a></div>
+      <div class="logo" id="full"><a class="ajax-link" href="index.html">R&D</a></div>
       
         <div class="menu-index" id="button">
         <i class="fa fa-bars"></i>
