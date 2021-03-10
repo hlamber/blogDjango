@@ -25,8 +25,8 @@ def contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             contact = form.save(commit=False) 
-            # contact.username = request.username
-            contact.username = self.client.post(reverse('username'))
+            contact.username = request.username
+            # contact.username = self.client.post(reverse('username'))
             contact.mail = request.mail
             contact.message = request.message
             contact.date = timezone.now()
