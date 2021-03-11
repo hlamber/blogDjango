@@ -14,7 +14,7 @@ from .forms import InfosPersoForm, LangueForm, ExperienceForm, DiplomeForm, Skil
 def home(request):
     return render(request, 'home/index.html', {})
 
-def formCV(request):
+def formulaireCV(request):
     if request.method == "POST":
         infosPersoForm = InfosPersoForm(request.POST)
         langueForm = LangueForm(request.POST)
