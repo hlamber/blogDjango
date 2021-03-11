@@ -34,9 +34,7 @@ def possible_years(first_year_in_scroll, last_year_in_scroll):
     return p_year
 
 class DiplomeForm(forms.ModelForm):
-    mention = forms.ChoiceField(choices=MENTION_CHOICES, widget=forms.RadioSelect(attrs={
-        'style': 'display: inline'
-    }))
+    mention = forms.ChoiceField(choices=MENTION_CHOICES, widget=forms.RadioSelect())
     obtained_years = forms.ChoiceField(
     choices=possible_years(((datetime.now()).year), 1900)
 )
