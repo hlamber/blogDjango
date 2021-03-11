@@ -16,25 +16,49 @@ def home(request):
 
 def formCV(request):
     if request.method == "POST":
-        infos = InfosPersoForm(request.POST)
-        langue = LangueForm(request.POST)
-        experience = ExperienceForm(request.POST)
-        diplome = DiplomeForm(request.POST)
-        skill = SkillForm(request.POST)
-        if infos.is_valid() and langue.is_valid() and experience.is_valid() and diplome.is_valid() and skill.is_valid():
-            infosPerso = infos.save(commit=False) 
-            infosPerso.first_name = infos.cleaned_data['first_name']
-            infosPerso.last_name = infos.cleaned_data['last_name']
-            infosPerso.email = infos.cleaned_data['email']
-            infosPerso.phone = infos.cleaned_data['phone']
-            infosPerso.birthday = infos.cleaned_data['birthday']
-            infosPerso.hobbies = infos.cleaned_data['hobbies']
+        infosPersoForm = InfosPersoForm(request.POST)
+        langueForm = LangueForm(request.POST)
+        experienceForm = ExperienceForm(request.POST)
+        diplomeForm = DiplomeForm(request.POST)
+        skillForm = SkillForm(request.POST)
+        if infosPersoForm.is_valid() and langueForm.is_valid() and experienceForm.is_valid() and diplomeForm.is_valid() and skillForm.is_valid():
+            
+            infosPerso = infosPersoForm.save(commit=False) 
+            infosPerso.first_name = infosPersoForm.cleaned_data['first_name']
+            infosPerso.last_name = infosPersoForm.cleaned_data['last_name']
+            infosPerso.email = infosPersoForm.cleaned_data['email']
+            infosPerso.phone = infosPersoForm.cleaned_data['phone']
+            infosPerso.birthday = infosPersoForm.cleaned_data['birthday']
+            infosPerso.hobbies = infosPersoForm.cleaned_data['hobbies']
             infosPerso.save()
-            langueBdd = langue.save(commit=False) 
-            # langueBdd.id_infosPerso = infosPerso.g
-            # langueBdd.last_name = langue.cleaned_data['langue']
-            # langueBdd.level = langue.cleaned_data['level']
-            # langueBdd.save()
+            
+            langue = langueForm.save(commit=False) 
+            langue.id_infosPerso = infosPerso
+            langue.last_name = langueForm.cleaned_data['langue']
+            langue.level = langueForm.cleaned_data['level']
+            langue.save()
+
+            experience = experienceForm.save(commit=False) 
+            experience.id_infosPerso = infosPerso
+            experience.experience_name = experienceForm.cleaned_data['experience_name']
+            experience.start_date = experienceForm.cleaned_data['start_date']
+            experience.end_date = experienceForm.cleaned_data['end_date']
+            experience.description = experienceForm.cleaned_data['description']
+            experience.save()
+
+            diplome = diplomeForm.save(commit=False) 
+            diplome.id_infosPerso = infosPerso
+            diplome.degree_name = diplomeForm.cleaned_data['degree_name']
+            diplome.mention = diplomeForm.cleaned_data['mention']
+            diplome.institution = diplomeForm.cleaned_data['institution']
+            diplome.obtained_years = diplomeForm.cleaned_data['obtained_years']
+            diplome.save()
+
+            skill = skillForm.save(commit=False) 
+            skill.id_infosPerso = infosPerso
+            skill.skill = skillForm.cleaned_data['skill']
+            skill.level = skillForm.cleaned_data['level']
+            skill.save()
         return render(request, 'home/index.html')
     else:
         infos = InfosPersoForm()

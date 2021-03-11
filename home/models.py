@@ -28,7 +28,7 @@ class Langue(models.Model):
     level = models.CharField(max_length=12, choices=LEVEL_CHOICES)
 
     def __str__(self):
-        return self.langue
+        return '{} {}'.format(self.id_infosPerso, self.langue)
 
 class Skill(models.Model):
     id_infosPerso = models.ForeignKey(InfosPerso, null=True, on_delete=models.CASCADE)
@@ -36,7 +36,7 @@ class Skill(models.Model):
     level = models.CharField(max_length=12, choices=LEVEL_CHOICES)
 
     def __str__(self):
-        return self.skill
+        return '{} {}'.format(self.id_infosPerso, self.skill)
 
 
 class Experience(models.Model):
@@ -47,7 +47,7 @@ class Experience(models.Model):
     description = models.TextField(max_length=200)
 
     def __str__(self):
-        return self.experience_name
+        return '{} {}'.format(self.id_infosPerso, self.experience_name)
 
 MENTION_CHOICES = [
     ('TRES BIEN', 'Très bien'),
@@ -62,8 +62,7 @@ class Diplome(models.Model):
     degree_name = models.CharField(max_length=200)
     mention = models.CharField(max_length=30, choices=MENTION_CHOICES)
     institution = models.CharField(max_length=200)
-    # obtained_years = models.CharField(max_length=200)
     obtained_years = models.IntegerField()
 
     def __str__(self):
-        return self.degree_name
+        return '{} {}'.format(self.id_infosPerso, self.degree_name)
