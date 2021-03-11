@@ -4,5 +4,6 @@ from django.conf import settings
 from . import views
 
 urlpatterns = [ 
-    path('', views.home, name='home'),
+    path('', views.home, name='home'), 
+    path('formulaire_CV/', views.formCV, name='formCV'),
 ]
