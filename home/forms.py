@@ -34,19 +34,17 @@ def possible_years(first_year_in_scroll, last_year_in_scroll):
     return p_year
 
 class DiplomeForm(forms.ModelForm):
-    mention = forms.ChoiceField(choices=MENTION_CHOICES, widget=forms.RadioSelect(attrs={
-        'style': 'display: inline'
-    }))
+    mention = forms.ChoiceField(choices=MENTION_CHOICES, widget=forms.RadioSelect())
     obtained_years = forms.ChoiceField(
-    choices=possible_years(((datetime.now()).year), 1900)
+    choices=possible_years(((datetime.now()).year), 1960)
 )
     class Meta:
         model = Diplome
-        fields = ('degree_name', 'mention', 'institution', 'obtained_years')
+        fields = ('degree_name', 'mention', 'obtained_years', 'institution')
      
 
 class SkillForm(forms.ModelForm):
     level = forms.ChoiceField(choices=LEVEL_CHOICES, widget=forms.RadioSelect())
     class Meta:
         model = Skill
-        fields = ('skill', 'level',)
+        fields = ('skill', 'level')
