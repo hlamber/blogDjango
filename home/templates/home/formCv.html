@@ -87,16 +87,30 @@
           <form method="POST">
             {% csrf_token %}
             <h2>Infos pero</h2>
-            {{ infos.as_p }}
+            <div class="fieldWrapper">
+              {% for field in infos %}
+                <div>
+                  {% if field.errors  %}
+                    <div class="alert-message block-message error">
+                      <p>{{ field.label_tag }} {{ field }} {{ field.errors }}</p>
+                    </div>
+                  {% else %}
+                    <p>{{ field.label_tag }} {{ field }}</p>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
             <hr/> 
 
             <h2>Langue</h2>
             <div class="fieldWrapper">
-              <p>
-                {{ langue.langue.errors }}
-                {{ langue.langue.label_tag }}
-                {{ langue.langue }}
-              </p>
+                  {% if langue.langue.errors  %}
+                    <div class="alert-message block-message error">
+                      <p>{{ langue.langue.label_tag }} {{ langue.langue }} {{ langue.langue.errors }}</p>
+                    </div>
+                  {% else %}
+                    <p>{{ langue.langue.label_tag }} {{ langue.langue }}</p>
+                  {% endif %}
             </div>
             <p>{{ langue.level.label_tag }}</p>
             <div class="controls">
@@ -111,16 +125,32 @@
             <hr/> 
             
             <h2>Expérience</h2>
-            {{ experience.as_p }}
+            <div class="fieldWrapper">
+              {% for field in experience %}
+                <div>
+                  {% if field.errors  %}
+                    <div class="alert-message block-message error">
+                      <p>{{ field.label_tag }} {{ field }} {{ field.errors }}</p>
+                    </div>
+                  {% else %}
+                    <p>{{ field.label_tag }} {{ field }}</p>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
             <hr/> 
 
             <h2>Diplôme</h2>
             <div class="fieldWrapper">
-              <p>
-                {{ diplome.degree_name.errors }}
-                {{ diplome.degree_name.label_tag }}
-                {{ diplome.degree_name }}
-              </p>
+                <div>
+                  {% if diplome.degree_name.errors  %}
+                    <div class="alert-message block-message error">
+                      <p>{{ diplome.degree_name.label_tag }} {{ diplome.degree_name }} {{ diplome.degree_name.errors }}</p>
+                    </div>
+                  {% else %}
+                    <p>{{ diplome.degree_name.label_tag }} {{ diplome.degree_name }}</p>
+                  {% endif %}
+                </div>
             </div>
             <p>{{ diplome.mention.label_tag }}</p>
             <div class="controls">
@@ -132,28 +162,40 @@
               {% endfor %}
             </div>
             <div class="fieldWrapper">
-              <p>
-                {{ diplome.obtained_years.errors }}
-                {{ diplome.obtained_years.label_tag }}
-                {{ diplome.obtained_years }}
-              </p>
+              <div>
+                {% if diplome.obtained_years.errors  %}
+                  <div class="alert-message block-message error">
+                    <p>{{ diplome.obtained_years.label_tag }} {{ diplome.obtained_years }} {{ diplome.obtained_years.errors }}</p>
+                  </div>
+                {% else %}
+                  <p>{{ diplome.obtained_years.label_tag }} {{ diplome.obtained_years }}</p>
+                {% endif %}
+              </div>
             </div>
             <div class="fieldWrapper">
-              <p>
-                {{ diplome.institution.errors }}
-                {{ diplome.institution.label_tag }}
-                {{ diplome.institution }}
-              </p>
+              <div>
+                {% if diplome.institution.errors  %}
+                  <div class="alert-message block-message error">
+                    <p>{{ diplome.institution.label_tag }} {{ diplome.institution }} {{ diplome.institution.errors }}</p>
+                  </div>
+                {% else %}
+                  <p>{{ diplome.institution.label_tag }} {{ diplome.institution }}</p>
+                {% endif %}
+              </div>
             </div>
             <hr/> 
 
             <h2>Compétence</h2>
             <div class="fieldWrapper">
-              <p>
-                {{ skill.skill.errors }}
-                {{ skill.skill.label_tag }}
-                {{ skill.skill }}
-              </p>
+              <div>
+                {% if skill.skill.errors  %}
+                  <div class="alert-message block-message error">
+                    <p>{{ skill.skill.label_tag }} {{ skill.skill }} {{ skill.skill.errors }}</p>
+                  </div>
+                {% else %}
+                  <p>{{ skill.skill.label_tag }} {{ skill.skill }}</p>
+                {% endif %}
+              </div>
             </div>
             <p>{{ skill.level.label_tag }}</p>
             <div class="controls">

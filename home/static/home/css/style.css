@@ -719,3 +719,7 @@ textarea:focus{background:#f4f4f4; height:250px;}
   flex-direction: column;
   align-items: center;
 }
+
+.error input, .error select {
+  border: 2px red solid;
+}
