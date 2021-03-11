@@ -91,38 +91,79 @@
             <hr/> 
 
             <h2>Langue</h2>
-            {{ langue.as_p }}
-            <hr/> 
-            <!-- <div class="form-inline">
-              <div class="controls-row">
-                {% for radio in langue.level %}
-              <div style = "float: left; display: inline-block; width: 46%; text-align: right; vertical-align: 30px; margin: 0px; padding: 0px;">
-                {{ radio }}
+            <div class="fieldWrapper">
+              <p>
+                {{ langue.langue.errors }}
+                {{ langue.langue.label_tag }}
+                {{ langue.langue }}
+              </p>
             </div>
-          {% endfor %} -->
-              <!-- </div>
-            </div> -->
-
-
-            <!-- <div class="form-group">
+            <p>{{ langue.level.label_tag }}</p>
+            <div class="controls">
               {% for radio in langue.level %}
-              <div class="radio-inline control-label">
-                {{ radio }}
+                <label class="radio" for="{{ radio.id_for_label }}">
+                  <p>{{ radio.choice_label }}</p>
+                  <span >{{ radio.tag }}</span>
+                </label>
+              {% endfor %}
             </div>
-          {% endfor %}
-            </div> -->
-            <!-- {{ langue.as_p }} -->
+
+            <hr/> 
             
             <h2>Expérience</h2>
             {{ experience.as_p }}
             <hr/> 
 
             <h2>Diplôme</h2>
-            {{ diplome.as_p }}
+            <div class="fieldWrapper">
+              <p>
+                {{ diplome.degree_name.errors }}
+                {{ diplome.degree_name.label_tag }}
+                {{ diplome.degree_name }}
+              </p>
+            </div>
+            <p>{{ diplome.mention.label_tag }}</p>
+            <div class="controls">
+              {% for radio in diplome.mention %}
+                <label class="radio" for="{{ radio.id_for_label }}">
+                  <p>{{ radio.choice_label }}</p>
+                  <span >{{ radio.tag }}</span>
+                </label>
+              {% endfor %}
+            </div>
+            <div class="fieldWrapper">
+              <p>
+                {{ diplome.obtained_years.errors }}
+                {{ diplome.obtained_years.label_tag }}
+                {{ diplome.obtained_years }}
+              </p>
+            </div>
+            <div class="fieldWrapper">
+              <p>
+                {{ diplome.institution.errors }}
+                {{ diplome.institution.label_tag }}
+                {{ diplome.institution }}
+              </p>
+            </div>
             <hr/> 
 
             <h2>Compétence</h2>
-            {{ skill.as_p }}
+            <div class="fieldWrapper">
+              <p>
+                {{ skill.skill.errors }}
+                {{ skill.skill.label_tag }}
+                {{ skill.skill }}
+              </p>
+            </div>
+            <p>{{ skill.level.label_tag }}</p>
+            <div class="controls">
+              {% for radio in skill.level %}
+                <label class="radio" for="{{ radio.id_for_label }}">
+                  <p>{{ radio.choice_label }}</p>
+                  <span >{{ radio.tag }}</span>
+                </label>
+              {% endfor %}
+            </div>
             
 
 <input class="button-submit" name="send" type="submit" value="SUBMIT" />    

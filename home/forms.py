@@ -14,10 +14,7 @@ class LangueForm(forms.ModelForm):
     level = forms.ChoiceField(choices=LEVEL_CHOICES, widget=forms.RadioSelect())
     class Meta:
         model = Langue
-        fields = ('langue', 'level',)
-        # self.fields['level'] = forms.ChoiceField( widget=forms.RadioSelect)
-        # widget=forms.RadioSelect(attrs={'disabled':'disabled'})
-
+        fields = ('langue', 'level')
 
 class ExperienceForm(forms.ModelForm):
     start_date = forms.DateField(widget=SelectDateWidget)
