@@ -700,3 +700,26 @@ textarea{
 }
 
 textarea:focus{background:#f4f4f4; height:250px;}
+
+.content .text-intro h2{
+  font-size:30px;
+  width:30%;
+  color:#000000;
+  font-weight:900;
+  line-height:70px;
+}
+
+.controls {
+  display: flex;
+}
+
+.radio {
+  flex: 1 0 auto;
+  display: inline;
+  flex-direction: column;
+  align-items: center;
+}
+
+.error input, .error select {
+  border: 2px red solid;
+}
