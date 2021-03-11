@@ -1,0 +1,167 @@
+{% load static %}
+
+<!doctype html>
+
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <title>Contact - R&D</title>
+  <meta name="description" content="Contact page with contact form and simplicty information with e-mail and address. Contact form with check input and textarea. ">
+  <meta name="keywords" content="thomsoon, simplicity, theme, html5, contact, form">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="author" content="thomsoon.com">
+  <link rel="icon" type="image/png" href="{% static 'formation/images/icon.png' %}" />
+
+<!--Style-->
+
+  <link rel="stylesheet" href="{% static 'formation/css/reset.css' %}">
+  <link rel="stylesheet" href="{% static 'formation/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'formation/css/style-responsive.css' %}">  
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  
+</head>
+
+<body>
+
+<!--Preloader-->
+
+<div class="preloader" id="preloader">
+    <div class="item">
+      <div class="spinner">
+      </div>
+    </div>
+</div>
+
+<div class="opacity-nav">
+
+        <div class="menu-index" id="buttons" style="z-index:999999">
+        <i class="fa  fa-close"></i>
+        </div>
+
+    <ul class="menu-fullscreen">
+      <li><a class="ajax-link" href="/">Home</a></li>
+      <li><a class="ajax-link" href="{% url 'about' %}">About us</a></li>
+      <li><a class="ajax-link" href="{% url 'contact' %}">Contact</a></li>
+      <li><a href="{% url 'accueil' %}">Nos Posts</a></li>
+      {% if user.is_authenticated %}
+        <li><a class="nav-link" href = "{% url 'post_add' %}"> Ajouter Post </a></li>
+        <li><a class="nav-link" href = "{% url 'logout' %}"> Déconnexion </a></li>
+
+        Utilisateur connecté : {{ user.username }}
+
+      {% else %}
+        <li><a class="nav-link" href = "{% url 'login' %}"> Connexion </a></li>
+      {% endif %}
+    </ul>
+
+</div>
+
+
+  <!--Header-->
+  <header id="fullscreen">
+    
+      <div class="logo" id="full"><a class="ajax-link" href="index.html">R&D</a></div>
+      
+        <div class="menu-index" id="button">
+        <i class="fa fa-bars"></i>
+        </div>
+
+  </header>
+
+  <div class="clear"></div>
+
+  <!--Content-->
+
+  <div class="content" id="ajax-content">
+
+        <div class="text-intro">
+
+          <h1>Formulaire d'ajout CV</h1>
+
+          <form method="POST">
+            {% csrf_token %}
+            <h2>Infos pero</h2>
+            {{ infos.as_p }}
+
+            <h2>Langue</h2>
+            <div class="funkyradio">
+                {% for radio in langue.level %}
+                    <div class="funky-{{ radio.choice_label }}">
+                        {{ radio.tag }} <label for="{{ radio.id_for_label }}">{{ radio.choice_label }}</label>
+                    </div>
+                {% endfor %}
+            </div>
+            {{ langue.as_p }}
+            
+            <h2>Expérience</h2>
+            {{ experience.as_p }}
+
+            <h2>Diplôme</h2>
+            {{ diplome.as_p }}
+
+            <h2>Compétence</h2>
+            {{ skill.as_p }}
+            
+<input class="button-submit" name="send" type="submit" value="SUBMIT" />    
+         </form>
+        </div>
+        
+	<br/><br/><br/><br/><br/><br/><br/><br/>      
+  </div>
+
+
+
+
+  <!--Home Sidebar-->
+
+<div id="ajax-sidebar"></div>
+
+
+
+  <!--Footer-->
+  <footer>
+
+    <div class="footer-margin">
+      <div class="social-footer">
+        <a href="https://www.facebook.com/thomsooncom"><i class="fa fa-facebook"></i></a>
+        <a href="https://www.behance.net/TomaszMazurczak"><i class="fa fa-behance"></i></a>
+      
+      </div>     
+      <div class="copyright">© Copyright 2015 Thomsoon.com. All Rights Reserved.</div>
+      
+
+    
+    </div>
+
+
+  </footer>
+
+
+<!--Scripts-->
+
+<script src="{% static 'formation/js/jquery.min.js' %}"></script>
+<script src="{% static 'formation/js/jquery.easing.min.js' %}"></script>
+<script src="{% static 'formation/js/modernizr.custom.42534.js' %}" type="text/javascript"></script>
+<script src="{% static 'formation/js/jquery.waitforimages.js' %}" type="text/javascript"></script>
+<script src="{% static 'formation/js/typed.js' %}" type="text/javascript"></script>
+<script src="{% static 'formation/js/masonry.pkgd.min.js' %}" type="text/javascript"></script>  
+<script src="{% static 'formation/js/imagesloaded.pkgd.min.js' %}" type="text/javascript"></script>    
+<script src="{% static 'formation/js/jquery.jkit.1.2.16.min.js' %}"></script>
+
+<script src="{% static 'formation/js/script.js' %}" type="text/javascript"></script>
+  
+	<script>
+    $('#button, #buttons').on('click', function() {
+      $( ".opacity-nav" ).fadeToggle( "slow", "linear" );
+    // Animation complete.
+    });
+  </script>
+
+
+</body>
+</html>
