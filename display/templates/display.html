@@ -1,0 +1,220 @@
+{% load static %}
+<!doctype html>
+
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <title>CVs</title>
+  <meta name="description" content="R&D website">
+  <meta name="keywords" content="R&D, Recherche, Developpement, website, cv, projets, digital ">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" href="{% static 'display/images/icon.png' %}" />
+
+<!--Style-->
+
+  <link rel="stylesheet" href="{% static 'display/css/reset.css' %}">
+  <link rel="stylesheet" href="{% static 'display/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'display/css/style-responsive.css' %}">  
+  
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  
+</head>
+
+<body>
+
+<!--Preloader-->
+
+<div class="preloader" id="preloader">
+    <div class="item">
+      <div class="spinner">
+      </div>
+    </div>
+</div>
+
+<div class="opacity-nav">
+
+  <div class="menu-index" id="buttons" style="z-index:999999">
+    <i class="fa  fa-close"></i>
+  </div>
+
+  <ul class="menu-fullscreen">
+    <li><a class="ajax-link" href="/">Home</a></li>
+    <li><a class="ajax-link" href="{% url 'display' %}">CVs</a></li>
+    <li><a class="ajax-link" href="{% url 'about' %}">About us</a></li>
+    <li><a class="ajax-link" href="{% url 'contact' %}">Contact</a></li>
+    <li><a href="{% url 'accueil' %}">Nos Posts</a></li>
+    {% if user.is_authenticated %}
+    <li><a class="nav-link" href = "{% url 'post_add' %}"> Ajouter Post </a></li>
+    <li><a class="nav-link" href = "{% url 'logout' %}"> Déconnexion </a></li>
+
+    Utilisateur connecté : {{ user.username }}
+
+    {% else %}
+      <li><a class="nav-link" href = "{% url 'login' %}"> Connexion </a></li>
+    {% endif %}
+
+</div>
+
+
+  <!--Header-->
+  <header id="fullscreen">
+    
+      <div class="logo" id="full"><a class="ajax-link" href="/">R&D</a></div>
+      
+        <div class="menu-index" id="button">
+        <i class="fa fa-bars"></i>
+        </div>
+        
+  </header>
+
+  <div class="clear"></div>
+
+  <!--Content-->
+
+  <div class="content" id="ajax-content">
+
+
+        <div class="text-intro">
+
+          <h1>CVs</h1>
+          <p>Liste de tous les CVs remplis dans le formulaire.</p>
+
+        </div>
+
+
+  <!--Portfolio grid-->
+
+  <ul class="portfolio-grid">
+
+    {% for cv in InfosPerso %}
+    <li class="grid-item" data-jkit="[show:delay=3000;speed=500;animation=fade]">
+      <img src="{% static 'display/images/portfolio/1.jpg' %}">
+      <a class="ajax-link" href="{% url 'post_detail' id=post.pk %}">  
+        <div class="grid-hover">
+          <h1>{{ cv.first_name }} {{ cv.last_name }}</h1>
+        </div>
+      </a>  
+    </li>
+    {% endfor %}
+  </ul>
+    
+    <!-- <li class="grid-item" data-jkit="[show:delay=3000;speed=500;animation=fade]">
+      <img src="{% static 'display/images/portfolio/1.jpg' %}">
+        <a class="ajax-link" href="single.html">  
+          <div class="grid-hover">
+            <h1>Single</h1>
+            <p>Branding</p>
+          </div>
+        </a>  
+    </li>
+
+    <li class="grid-item" data-jkit="[show:delay=3000;speed=500;animation=fade]">
+      <img src="{% static 'display/images/portfolio/5.jpg' %}">
+        <a class="ajax-link" href="single-fullscreen.html">  
+          <div class="grid-hover">
+            <h1>Single</h1>
+            <p>Branding</p>
+          </div>
+        </a>      
+    </li>    
+    
+    <li class="grid-item" data-jkit="[show:delay=3000;speed=500;animation=fade]">
+      <img src="{% static 'display/images/portfolio/2.jpg' %}">
+        <a class="ajax-link" href="#">  
+          <div class="grid-hover">
+            <h1>Single</h1>
+            <p>Branding</p>
+          </div>
+        </a>      
+    </li>  
+    
+    <li class="grid-item" data-jkit="[show:delay=3000;speed=500;animation=fade]">
+      <img src="{% static 'display/images/portfolio/3.jpg' %}">
+        <a class="ajax-link" href="#">  
+          <div class="grid-hover">
+            <h1>Single</h1>
+            <p>Branding</p>
+          </div>
+        </a>      
+    </li>    
+
+    <li class="grid-item" data-jkit="[show:delay=3000;speed=500;animation=fade]">
+      <img src="{% static 'display/images/portfolio/4.jpg' %}">
+        <a class="ajax-link" href="#">  
+          <div class="grid-hover">
+            <h1>Single</h1>
+            <p>Branding</p>
+          </div>
+        </a>      
+    </li>    
+
+    <li class="grid-item" data-jkit="[show:delay=3000;speed=500;animation=fade]">
+      <img src="{% static 'display/images/portfolio/6.jpg' %}">
+        <a class="ajax-link" href="#">  
+          <div class="grid-hover">
+            <h1>Single</h1>
+            <p>Branding</p>
+          </div>
+        </a>      
+    </li>  
+
+  </ul> -->
+
+  </div>
+
+
+
+  <!--Home Sidebar-->
+
+<div id="ajax-sidebar"></div>
+
+
+  <!--Footer-->
+
+  <footer>
+
+    <div class="footer-margin">
+      <div class="social-footer">
+        <a href="https://www.facebook.com/thomsooncom"><i class="fa fa-facebook"></i></a>
+        <a href="https://www.behance.net/TomaszMazurczak"><i class="fa fa-behance"></i></a>
+      
+      </div>     
+      <div class="copyright">© Copyright 2015 Thomsoon.com. All Rights Reserved.</div>
+      
+
+    
+    </div>
+
+
+  </footer>
+
+
+
+<!--Scripts-->
+
+  <script src="{% static 'display/js/jquery.min.js' %}"></script>
+  <script src="{% static 'display/js/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'display/js/modernizr.custom.42534.js' %}" type="text/javascript"></script>
+  <script src="{% static 'display/js/jquery.waitforimages.js' %}" type="text/javascript"></script>
+  <script src="{% static 'display/js/typed.js' %}" type="text/javascript"></script>
+  <script src="{% static 'display/js/masonry.pkgd.min.js' %}" type="text/javascript"></script>  
+  <script src="{% static 'display/js/imagesloaded.pkgd.min.js' %}" type="text/javascript"></script>    
+  <script src="{% static 'display/js/jquery.jkit.1.2.16.min.js' %}"></script>
+
+  <script src="{% static 'display/js/script.js' %}" type="text/javascript"></script>
+  
+	<script>
+    $('#button, #buttons').on('click', function() {
+      $( ".opacity-nav" ).fadeToggle( "slow", "linear" );
+    // Animation complete.
+    });
+  </script>
+
+
+</body>
+</html>

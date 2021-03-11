@@ -9,5 +9,6 @@ urlpatterns = [
     path('', include('home.urls')),
     path('', include('django.contrib.auth.urls')),
     url(r'^', include('about.urls')), # tell django to read urls.py in example app
+    url(r'^', include('display.urls')), # tell django to read urls.py in example app
 
 ]
