@@ -48,6 +48,7 @@
       <li><a class="ajax-link" href="{% url 'about' %}">About us</a></li>
       <li><a class="ajax-link" href="{% url 'contact' %}">Contact</a></li>
       <li><a href="{% url 'accueil' %}">Nos Posts</a></li>
+      <li><a href="{% url 'formulaireCV' %}">Déposer un CV</a></li>
       {% if user.is_authenticated %}
         <li><a class="nav-link" href = "{% url 'post_add' %}"> Ajouter Post </a></li>
         <li><a class="nav-link" href = "{% url 'logout' %}"> Déconnexion </a></li>

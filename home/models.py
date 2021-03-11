@@ -2,16 +2,17 @@ from django.conf import settings
 from django.db import models
 from django import forms
 from django.utils import timezone
-import datetime
+from django.core.validators import RegexValidator
 
 class InfosPerso(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     email = models.EmailField(max_length=200)
-    phone =  models.CharField(max_length=200)
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Numéro de téléphone incorrect")
+    phone = models.CharField(validators=[phone_regex], max_length=17)
     birthday = models.DateField()
     hobbies = models.CharField(max_length=200)
-    created_date = models.DateTimeField(default=timezone.now)
+    created_date = models.DateField(default=timezone.now)
 
     def __str__(self):
         return self.first_name + " " + self.last_name
@@ -42,8 +43,8 @@ class Skill(models.Model):
 class Experience(models.Model):
     id_infosPerso = models.ForeignKey(InfosPerso, null=True, on_delete=models.CASCADE)
     experience_name = models.CharField(max_length=200)
-    start_date = models.DateTimeField(default=timezone.now)
-    end_date = models.DateTimeField(default=timezone.now)
+    start_date = models.DateField(default=timezone.now)
+    end_date = models.DateField(default=timezone.now)
     description = models.TextField(max_length=200)
 
     def __str__(self):

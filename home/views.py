@@ -14,7 +14,7 @@ from .forms import InfosPersoForm, LangueForm, ExperienceForm, DiplomeForm, Skil
 def home(request):
     return render(request, 'home/index.html', {})
 
-def formCV(request):
+def formulaireCV(request):
     if request.method == "POST":
         infosPersoForm = InfosPersoForm(request.POST)
         langueForm = LangueForm(request.POST)
@@ -22,7 +22,7 @@ def formCV(request):
         diplomeForm = DiplomeForm(request.POST)
         skillForm = SkillForm(request.POST)
         if infosPersoForm.is_valid() and langueForm.is_valid() and experienceForm.is_valid() and diplomeForm.is_valid() and skillForm.is_valid():
-            
+            print("Formulaire CV correct")
             infosPerso = infosPersoForm.save(commit=False) 
             infosPerso.first_name = infosPersoForm.cleaned_data['first_name']
             infosPerso.last_name = infosPersoForm.cleaned_data['last_name']
@@ -59,11 +59,13 @@ def formCV(request):
             skill.skill = skillForm.cleaned_data['skill']
             skill.level = skillForm.cleaned_data['level']
             skill.save()
-        return render(request, 'home/index.html')
-    else:
-        infos = InfosPersoForm()
-        langue = LangueForm()
-        experience = ExperienceForm()
-        diplome = DiplomeForm()
-        skill = SkillForm()
+            return render(request, 'home/index.html')
+        else : 
+            return render(request, 'home/formCV.html', {'infos':infosPersoForm, 'langue':langueForm, 'experience':experienceForm, 'diplome':diplomeForm, 'skill':skillForm})
+    print("Formulaire CV incorrect")
+    infos = InfosPersoForm()
+    langue = LangueForm()
+    experience = ExperienceForm()
+    diplome = DiplomeForm()
+    skill = SkillForm()
     return render(request, 'home/formCV.html', {'infos':infos, 'langue':langue, 'experience':experience, 'diplome':diplome, 'skill':skill})

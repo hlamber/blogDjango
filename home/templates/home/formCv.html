@@ -49,6 +49,7 @@
       <li><a class="ajax-link" href="{% url 'about' %}">About us</a></li>
       <li><a class="ajax-link" href="{% url 'contact' %}">Contact</a></li>
       <li><a href="{% url 'accueil' %}">Nos Posts</a></li>
+      <li><a href="{% url 'formulaireCV' %}">Déposer un CV</a></li>
       {% if user.is_authenticated %}
         <li><a class="nav-link" href = "{% url 'post_add' %}"> Ajouter Post </a></li>
         <li><a class="nav-link" href = "{% url 'logout' %}"> Déconnexion </a></li>
@@ -88,42 +89,125 @@
           <form method="POST">
             {% csrf_token %}
             <h2>Infos pero</h2>
-            {{ infos.as_p }}
+            <div class="fieldWrapper">
+              {% for field in infos %}
+                <div>
+                  {% if field.errors  %}
+                    <div class="alert-message block-message error">
+                      <p>{{ field.label_tag }} {{ field }} {{ field.errors }}</p>
+                    </div>
+                  {% else %}
+                    <p>{{ field.label_tag }} {{ field }}</p>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
             <hr/> 
 
             <h2>Langue</h2>
-            {{ langue.as_p }}
-            <hr/> 
-            <!-- <div class="form-inline">
-              <div class="controls-row">
-                {% for radio in langue.level %}
-              <div style = "float: left; display: inline-block; width: 46%; text-align: right; vertical-align: 30px; margin: 0px; padding: 0px;">
-                {{ radio }}
+            <div class="fieldWrapper">
+                  {% if langue.langue.errors  %}
+                    <div class="alert-message block-message error">
+                      <p>{{ langue.langue.label_tag }} {{ langue.langue }} {{ langue.langue.errors }}</p>
+                    </div>
+                  {% else %}
+                    <p>{{ langue.langue.label_tag }} {{ langue.langue }}</p>
+                  {% endif %}
             </div>
-          {% endfor %} -->
-              <!-- </div>
-            </div> -->
-
-
-            <!-- <div class="form-group">
+            <p>{{ langue.level.label_tag }}</p>
+            <div class="controls">
               {% for radio in langue.level %}
-              <div class="radio-inline control-label">
-                {{ radio }}
+                <label class="radio" for="{{ radio.id_for_label }}">
+                  <p>{{ radio.choice_label }}</p>
+                  <span >{{ radio.tag }}</span>
+                </label>
+              {% endfor %}
             </div>
-          {% endfor %}
-            </div> -->
-            <!-- {{ langue.as_p }} -->
+
+            <hr/> 
             
             <h2>Expérience</h2>
-            {{ experience.as_p }}
+            <div class="fieldWrapper">
+              {% for field in experience %}
+                <div>
+                  {% if field.errors  %}
+                    <div class="alert-message block-message error">
+                      <p>{{ field.label_tag }} {{ field }} {{ field.errors }}</p>
+                    </div>
+                  {% else %}
+                    <p>{{ field.label_tag }} {{ field }}</p>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
             <hr/> 
 
             <h2>Diplôme</h2>
-            {{ diplome.as_p }}
+            <div class="fieldWrapper">
+                <div>
+                  {% if diplome.degree_name.errors  %}
+                    <div class="alert-message block-message error">
+                      <p>{{ diplome.degree_name.label_tag }} {{ diplome.degree_name }} {{ diplome.degree_name.errors }}</p>
+                    </div>
+                  {% else %}
+                    <p>{{ diplome.degree_name.label_tag }} {{ diplome.degree_name }}</p>
+                  {% endif %}
+                </div>
+            </div>
+            <p>{{ diplome.mention.label_tag }}</p>
+            <div class="controls">
+              {% for radio in diplome.mention %}
+                <label class="radio" for="{{ radio.id_for_label }}">
+                  <p>{{ radio.choice_label }}</p>
+                  <span >{{ radio.tag }}</span>
+                </label>
+              {% endfor %}
+            </div>
+            <div class="fieldWrapper">
+              <div>
+                {% if diplome.obtained_years.errors  %}
+                  <div class="alert-message block-message error">
+                    <p>{{ diplome.obtained_years.label_tag }} {{ diplome.obtained_years }} {{ diplome.obtained_years.errors }}</p>
+                  </div>
+                {% else %}
+                  <p>{{ diplome.obtained_years.label_tag }} {{ diplome.obtained_years }}</p>
+                {% endif %}
+              </div>
+            </div>
+            <div class="fieldWrapper">
+              <div>
+                {% if diplome.institution.errors  %}
+                  <div class="alert-message block-message error">
+                    <p>{{ diplome.institution.label_tag }} {{ diplome.institution }} {{ diplome.institution.errors }}</p>
+                  </div>
+                {% else %}
+                  <p>{{ diplome.institution.label_tag }} {{ diplome.institution }}</p>
+                {% endif %}
+              </div>
+            </div>
             <hr/> 
 
             <h2>Compétence</h2>
-            {{ skill.as_p }}
+            <div class="fieldWrapper">
+              <div>
+                {% if skill.skill.errors  %}
+                  <div class="alert-message block-message error">
+                    <p>{{ skill.skill.label_tag }} {{ skill.skill }} {{ skill.skill.errors }}</p>
+                  </div>
+                {% else %}
+                  <p>{{ skill.skill.label_tag }} {{ skill.skill }}</p>
+                {% endif %}
+              </div>
+            </div>
+            <p>{{ skill.level.label_tag }}</p>
+            <div class="controls">
+              {% for radio in skill.level %}
+                <label class="radio" for="{{ radio.id_for_label }}">
+                  <p>{{ radio.choice_label }}</p>
+                  <span >{{ radio.tag }}</span>
+                </label>
+              {% endfor %}
+            </div>
             
 
 <input class="button-submit" name="send" type="submit" value="SUBMIT" />    
