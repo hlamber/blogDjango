@@ -104,25 +104,42 @@
             <hr/> 
 
             <h2>Langue</h2>
-            <div class="fieldWrapper">
-                  {% if langue.langue.errors  %}
-                    <div class="alert-message block-message error">
-                      <p>{{ langue.langue.label_tag }} {{ langue.langue }} {{ langue.langue.errors }}</p>
-                    </div>
-                  {% else %}
-                    <p>{{ langue.langue.label_tag }} {{ langue.langue }}</p>
-                  {% endif %}
-            </div>
-            <p>{{ langue.level.label_tag }}</p>
-            <div class="controls">
-              {% for radio in langue.level %}
-                <label class="radio" for="{{ radio.id_for_label }}">
-                  <p>{{ radio.choice_label }}</p>
-                  <span >{{ radio.tag }}</span>
-                </label>
+            <div id="pet_form">
+              {{ pet_form }}
+              {{ langue.management_form }}
+            
+              {% for form in langue %}
+                <div class="image-form d-flex justify-content-between">
+                  <div class="fieldWrapper">
+                    
+                    {% if form.langue.errors  %}
+                      <div class="alert-message block-message error">
+                        <p>{{ form.langue.label_tag }} {{ form.langue }} {{ form.langue.errors }}</p>
+                      </div>
+                    {% else %}
+                      <p>{{ form.langue.label_tag }} {{ form.langue }}</p>
+                    {% endif %}
+                </div>
+                <p>{{ form.level.label_tag }}</p>
+                <div class="controls">
+                  {% for radio in form.level %}
+                    <label class="radio" for="{{ radio.id_for_label }}">
+                      <p>{{ radio.choice_label }}</p>
+                      <span >{{ radio.tag }}</span>
+                    </label>
+                  {% endfor %}
+                </div>
+                  <input  class="align-self-center btn btn-danger delete-image-form" value="Delete" type="button"> 
+                </div>
               {% endfor %}
+            
+              <input type="hidden" name="form-TOTAL_FORMS" value="3" id="id_form-TOTAL_FORMS">
+              <input type="hidden" name="form-INITIAL_FORMS" value="0" id="id_form-INITIAL_FORMS">
+              <input type="hidden" name="form-MIN_NUM_FORMS" value="0" id="id_form-MIN_NUM_FORMS">
+              <input type="hidden" name="form-MAX_NUM_FORMS" value="1000" id="id_form-MAX_NUM_FORMS">
+              <input type="hidden" id="submitHidden" name="submit" value="Submit" class="btn btn-primary" />
+              <input id="add-image-form" class="btn btn-primary my-3" value="Add Another Langue" type="button"> 
             </div>
-
             <hr/> 
             
             <h2>Expérience</h2>
@@ -164,7 +181,7 @@
             </div>
             <div class="fieldWrapper">
               <div>
-                {% if diplome.obtained_years.errors  %}
+                {% if diplome.obtained_years.errors %}
                   <div class="alert-message block-message error">
                     <p>{{ diplome.obtained_years.label_tag }} {{ diplome.obtained_years }} {{ diplome.obtained_years.errors }}</p>
                   </div>
@@ -175,7 +192,7 @@
             </div>
             <div class="fieldWrapper">
               <div>
-                {% if diplome.institution.errors  %}
+                {% if diplome.institution.errors %}
                   <div class="alert-message block-message error">
                     <p>{{ diplome.institution.label_tag }} {{ diplome.institution }} {{ diplome.institution.errors }}</p>
                   </div>
@@ -246,6 +263,7 @@
 
 <!--Scripts-->
 
+
 <script src="{% static 'home/js/jquery.min.js' %}"></script>
 <script src="{% static 'home/js/jquery.easing.min.js' %}"></script>
 <script src="{% static 'home/js/modernizr.custom.42534.js' %}" type="text/javascript"></script>
@@ -258,9 +276,73 @@
 <script src="{% static 'home/js/script.js' %}" type="text/javascript"></script>
   
 	<script>
+const imageForm = document.getElementsByClassName("image-form");
+const mainForm = document.querySelector("#pet_form");
+const addImageFormBtn = document.querySelector("#add-image-form");
+const submitFormBtn = document.querySelector("#submitHidden");
+const totalForms = document.querySelector("#id_form-TOTAL_FORMS");
+
+let formCount = imageForm.length - 1;
+
+function updateForms() {
+    let count = 0;
+    for (let form of imageForm) {
+        const formRegex = RegExp(`form-(\\d){1}-`, 'g');
+        form.innerHTML = form.innerHTML.replace(formRegex, `form-${count++}-`)
+    }
+}
+
+function manageAddButton() {
+  console.log(formCount)
+        if(formCount + 1 > 2){
+          addImageFormBtn.style.display = "none";
+        } else {
+          addImageFormBtn.style.display = "block";
+        }
+  }
+
+
+
+addImageFormBtn.addEventListener("click", function (event) {
+  
+    event.preventDefault();
+
+    const newImageForm = imageForm[0].cloneNode(true);
+    const formRegex = RegExp(`form-(\\d){1}-`, 'g');
+
+    formCount++;
+
+    newImageForm.innerHTML = newImageForm.innerHTML.replace(formRegex, `form-${formCount}-`);
+    mainForm.insertBefore(newImageForm, submitFormBtn);
+    totalForms.setAttribute('value', `${formCount + 1}`);
+    manageAddButton();
+});
+
+mainForm.addEventListener("click", function (event) {
+    if (event.target.classList.contains("delete-image-form")) {
+        event.preventDefault();
+        event.target.parentElement.remove();
+        formCount--;
+        updateForms();
+        totalForms.setAttribute('value', `${formCount + 1}`);
+        manageAddButton()
+    }
+});
+
+
+    // $('#buttonLangue').on('click', function () {
+    //   console.log("Clone langue")
+    //   $('#langue0')
+    //     .clone()
+    //     .appendTo('#langue');
+    // });
+
+    // function removeNameFromTheList(e) {
+    //   e.parentElement.remove()
+    // };
+
     $('#button, #buttons').on('click', function() {
       $( ".opacity-nav" ).fadeToggle( "slow", "linear" );
-    // Animation complete.
     });
   </script>
 

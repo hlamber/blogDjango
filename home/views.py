@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.forms import modelformset_factory
 
 from .models import InfosPerso, Langue, Experience, Diplome, Skill
 from .forms import InfosPersoForm, LangueForm, ExperienceForm, DiplomeForm, SkillForm
@@ -15,9 +16,10 @@ def home(request):
     return render(request, 'home/index.html', {})
 
 def formulaireCV(request):
+    LangueFormSet = modelformset_factory(Langue, form=LangueForm)
     if request.method == "POST":
         infosPersoForm = InfosPersoForm(request.POST)
-        langueForm = LangueForm(request.POST)
+        langueForm = LangueFormSet(request.POST or None, queryset= Langue.objects.none())
         experienceForm = ExperienceForm(request.POST)
         diplomeForm = DiplomeForm(request.POST)
         skillForm = SkillForm(request.POST)
@@ -32,11 +34,14 @@ def formulaireCV(request):
             infosPerso.hobbies = infosPersoForm.cleaned_data['hobbies']
             infosPerso.save()
             
-            langue = langueForm.save(commit=False) 
-            langue.id_infosPerso = infosPerso
-            langue.last_name = langueForm.cleaned_data['langue']
-            langue.level = langueForm.cleaned_data['level']
-            langue.save()
+            for form in langueForm:
+                if form.cleaned_data != {}:
+                    print("formSet langue")
+                    langue = form.save(commit=False) 
+                    langue.id_infosPerso = infosPerso
+                    # langue.langue = form.cleaned_data['langue']
+                    # langue.level = form.cleaned_data['level']
+                    langue.save()
 
             experience = experienceForm.save(commit=False) 
             experience.id_infosPerso = infosPerso
@@ -59,12 +64,14 @@ def formulaireCV(request):
             skill.skill = skillForm.cleaned_data['skill']
             skill.level = skillForm.cleaned_data['level']
             skill.save()
+            print("Save bdd ok")
             return render(request, 'home/index.html')
         else : 
+            print("Formulaire CV incorrect")
             return render(request, 'home/formCV.html', {'infos':infosPersoForm, 'langue':langueForm, 'experience':experienceForm, 'diplome':diplomeForm, 'skill':skillForm})
-    print("Formulaire CV incorrect")
+    print("No méthode POST")
     infos = InfosPersoForm()
-    langue = LangueForm()
+    langue = LangueFormSet(request.POST or None, queryset= Langue.objects.none())
     experience = ExperienceForm()
     diplome = DiplomeForm()
     skill = SkillForm()
