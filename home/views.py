@@ -1,15 +1,33 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.views.generic import TemplateView # Import TemplateView
+from django.core.paginator import Paginator
 
 from .models import InfosPerso, Langue, Experience, Diplome, Skill
 from .forms import InfosPersoForm, LangueForm, ExperienceForm, DiplomeForm, SkillForm
 
-# Create your views here.
-# def home(request):
-#     return HttpResponse("""
-#     <h1>Hello word !</h1>
-#     <p>Ceci est ma première page avec django !</p>
-#     """)
+class DisplayPageView(TemplateView):
+    template_name = "home/display.html"
+
+def display(request):
+    infos = InfosPerso.objects.all().order_by('last_name')
+    return render(request, 'home/display.html', {'infos': infos})
+
+def cv_details(request, id):
+    info = get_object_or_404(InfosPerso, pk=id)
+    diplome = get_object_or_404(Diplome, id_infosPerso=id)
+    experience = get_object_or_404(Experience, id_infosPerso=id)
+    langues = get_object_or_404(Langue, id_infosPerso=id)
+    skills = get_object_or_404(Skill, id_infosPerso=id)
+    
+    infospersos = InfosPerso.objects.all()
+    paginator = Paginator(infospersos, 10)
+
+    # page_number = request.GET.get('page')
+    page_obj = paginator.get_page(2)
+
+    return render(request, 'home/cv_details.html', {'paginator': paginator, 'page_obj': page_obj , 'info': info, 'diplome' : diplome, 'experience': experience, 'langues' : langues, 'skills' : skills})
+
 
 def home(request):
     return render(request, 'home/index.html', {})

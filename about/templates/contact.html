@@ -7,10 +7,9 @@
 
   <meta charset="utf-8">
   <title>Contact - R&D</title>
-  <meta name="description" content="Contact page with contact form and simplicty information with e-mail and address. Contact form with check input and textarea. ">
-  <meta name="keywords" content="thomsoon, simplicity, theme, html5, contact, form">
+  <meta name="description" content="R&D website">
+  <meta name="keywords" content="R&D, Recherche, Developpement, website, cv, projets, digital ">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="author" content="thomsoon.com">
   <link rel="icon" type="image/png" href="{% static 'formation/images/icon.png' %}" />
 
 <!--Style-->
@@ -38,13 +37,15 @@
 </div>
 
 <div class="opacity-nav">
-
-        <div class="menu-index" id="buttons" style="z-index:999999">
-        <i class="fa  fa-close"></i>
-        </div>
+  <div class="menu-index" id="buttons" style="z-index:999999">
+    <i class="fa  fa-close"></i>
+  </div>
 
     <ul class="menu-fullscreen">
       <li><a class="ajax-link" href="/">Home</a></li>
+      {% if user.is_authenticated %}
+      <li><a class="ajax-link" href="{% url 'display' %}">Nos CVs</a></li>
+      {% endif %}
       <li><a class="ajax-link" href="{% url 'about' %}">About us</a></li>
       <li><a class="ajax-link" href="{% url 'contact' %}">Contact</a></li>
       <li><a href="{% url 'accueil' %}">Nos Posts</a></li>

@@ -5,11 +5,10 @@
 <head>
 
   <meta charset="utf-8">
-  <title>About us - THOMSOON - Portfolio with grid and modern simplicity style - download now!</title>
-  <meta name="description" content="About us is minimalist and simplicty information in two column and masonry portfolio logo our photography. Check and download free.">
-  <meta name="keywords" content="thomsoon, simplicity, theme, html5, about us">
+  <title>About us - R&D</title>
+  <meta name="description" content="R&D website">
+  <meta name="keywords" content="R&D, Recherche, Developpement, website, cv, projets, digital ">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="author" content="thomsoon.com">
   <link rel="icon" type="image/png" href="{% static 'formation/images/icon.png' %}" />
 
 <!--Style-->
@@ -44,6 +43,9 @@
 
     <ul class="menu-fullscreen">
       <li><a class="ajax-link" href="/">Home</a></li>
+      {% if user.is_authenticated %}
+      <li><a class="ajax-link" href="{% url 'display' %}">Nos CVs</a></li>
+      {% endif %}
       <li><a class="ajax-link" href="{% url 'about' %}">About us</a></li>
       <li><a class="ajax-link" href="{% url 'contact' %}">Contact</a></li>
       <li><a href="{% url 'accueil' %}">Nos Posts</a></li>
@@ -59,6 +61,7 @@
       {% endif %}
 
 </div>
+
 
 
   <!--Header-->
