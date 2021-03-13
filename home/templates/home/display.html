@@ -44,7 +44,9 @@
 
   <ul class="menu-fullscreen">
     <li><a class="ajax-link" href="/">Home</a></li>
-    <li><a class="ajax-link" href="{% url 'display' %}">CVs</a></li>
+    {% if user.is_authenticated %}
+    <li><a class="ajax-link" href="{% url 'display' %}">Nos CVs</a></li>
+    {% endif %}
     <li><a class="ajax-link" href="{% url 'about' %}">About us</a></li>
     <li><a class="ajax-link" href="{% url 'contact' %}">Contact</a></li>
     <li><a href="{% url 'accueil' %}">Nos Posts</a></li>
@@ -77,6 +79,7 @@
   <!--Content-->
 
   <div class="content" id="ajax-content">
+    {% if user.is_authenticated %}
 
 
         <div class="text-intro">
@@ -106,71 +109,17 @@
     </li>
     {% endfor %}
   </ul>
-    
-    <!-- <li class="grid-item" data-jkit="[show:delay=3000;speed=500;animation=fade]">
-      <img src="{% static 'display/images/portfolio/1.jpg' %}">
-        <a class="ajax-link" href="single.html">  
-          <div class="grid-hover">
-            <h1>Single</h1>
-            <p>Branding</p>
-          </div>
-        </a>  
-    </li>
-
-    <li class="grid-item" data-jkit="[show:delay=3000;speed=500;animation=fade]">
-      <img src="{% static 'display/images/portfolio/5.jpg' %}">
-        <a class="ajax-link" href="single-fullscreen.html">  
-          <div class="grid-hover">
-            <h1>Single</h1>
-            <p>Branding</p>
-          </div>
-        </a>      
-    </li>    
-    
-    <li class="grid-item" data-jkit="[show:delay=3000;speed=500;animation=fade]">
-      <img src="{% static 'display/images/portfolio/2.jpg' %}">
-        <a class="ajax-link" href="#">  
-          <div class="grid-hover">
-            <h1>Single</h1>
-            <p>Branding</p>
-          </div>
-        </a>      
-    </li>  
-    
-    <li class="grid-item" data-jkit="[show:delay=3000;speed=500;animation=fade]">
-      <img src="{% static 'display/images/portfolio/3.jpg' %}">
-        <a class="ajax-link" href="#">  
-          <div class="grid-hover">
-            <h1>Single</h1>
-            <p>Branding</p>
-          </div>
-        </a>      
-    </li>    
-
-    <li class="grid-item" data-jkit="[show:delay=3000;speed=500;animation=fade]">
-      <img src="{% static 'display/images/portfolio/4.jpg' %}">
-        <a class="ajax-link" href="#">  
-          <div class="grid-hover">
-            <h1>Single</h1>
-            <p>Branding</p>
-          </div>
-        </a>      
-    </li>    
-
-    <li class="grid-item" data-jkit="[show:delay=3000;speed=500;animation=fade]">
-      <img src="{% static 'display/images/portfolio/6.jpg' %}">
-        <a class="ajax-link" href="#">  
-          <div class="grid-hover">
-            <h1>Single</h1>
-            <p>Branding</p>
-          </div>
-        </a>      
-    </li>  
-
-  </ul> -->
-
   </div>
 
+  {% else %}
+  <div class="text-intro">
+
+    <h1>CVs</h1>
+    <p>Vous ne pouvez pas accéder à cette page.</p>
+    <p> Si vous êtes administrateur, <a class="ajax-link" href="{% url 'login' %}">connectez-vous</a>.</p>
+
+  </div>
+  {% endif %}
 
 
   <!--Home Sidebar-->

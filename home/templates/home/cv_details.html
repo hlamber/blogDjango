@@ -44,7 +44,9 @@
 
 <ul class="menu-fullscreen">
   <li><a class="ajax-link" href="/">Home</a></li>
+  {% if user.is_authenticated %}
   <li><a class="ajax-link" href="{% url 'display' %}">Nos CVs</a></li>
+  {% endif %}  
   <li><a class="ajax-link" href="{% url 'about' %}">About us</a></li>
   <li><a class="ajax-link" href="{% url 'contact' %}">Contact</a></li>
   <li><a href="{% url 'accueil' %}">Nos Posts</a></li>
@@ -77,6 +79,7 @@
   <!--Content-->
 
   <div class="content" id="ajax-content">
+    {% if user.is_authenticated %}
 
 
         <div class="text-intro">
@@ -124,19 +127,21 @@
                     <p>Niveau : {{ skills.level }}</p>
                   </div>
 
+        </div>
 
-					        <div class="prev-next">
-                    <br/><br/><br/><br/><br/>
-					        
-					          <div class="prev-button"><a class="ajax-link" href="single-fullscreen.html">Previous work</a></div>
-					          <div class="next-button"><a class="ajax-link" href="projects.html">Next work</a></div>
-					
-					        </div>
-            </div>
         
     </div>
 
 
+    {% else %}
+    <div class="text-intro">
+
+      <h1>CV</h1>
+      <p>Vous ne pouvez pas accéder à cette page.</p>
+      <p> Si vous êtes administrateur, <a class="ajax-link" href="{% url 'login' %}">connectez-vous</a>.</p>
+  
+    </div>
+    {% endif %}
 
   <!--Home Sidebar-->
 
