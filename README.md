@@ -19,3 +19,6 @@ L'application **about** permet d'accéder aux pages "About Us" et "Contact".
 
 ## blog
 **blog** est une application qui permet consulter des articles de blog. Il est possible de poster, modifier et supprimer des posts, si l'on est connecté.  
+
+## home
+L'application **home** permet d'accéder à la page d'accueil qui présente les différents pôles de recherche au sein de l'entreprise, et celle du formulaire de CVs pour y renseigner ses informations.
