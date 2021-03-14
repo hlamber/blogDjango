@@ -18,7 +18,7 @@ L'application **about** permet d'accéder aux pages "About Us" et "Contact".
 "Contact" est un formulaire qui permet de contacter l'équipe R&D, en renseignant son nom et son adresse mail.
 
 ## blog
-**blog** est une application qui permet consulter des articles de blog. Il est possible de poster, modifier et supprimer des posts, si l'on est connecté.  
+**blog** est une application qui permet consulter des articles de blog. Il est possible de poster, modifier et supprimer des posts, si l'on est connecté.
 
 ## home
-L'application **home** permet d'accéder à la page d'accueil qui présente les différents pôles de recherche au sein de l'entreprise, et celle du formulaire de CVs pour y renseigner ses informations.
+L'application **home** permet d'accéder à la page d'accueil qui présente les différents pôles de recherche au sein de l'entreprise, et celle du formulaire de CVs pour y renseigner ses informations. La page qui présente tous les CV n'est accessible qu'une fois connecté.
